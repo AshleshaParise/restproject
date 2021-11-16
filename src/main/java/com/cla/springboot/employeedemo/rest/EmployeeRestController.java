@@ -44,8 +44,12 @@ public class EmployeeRestController {
 		return employee;
 		
 	}
-		
 	
+	@GetMapping("employee/name/{emp_name}")
+	public Employee getEmployeeName(@PathVariable String emp_name) {
+		Employee employee=employeeService.findByName(emp_name);
+		return employee;		
+	}	
 }
 
 

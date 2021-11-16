@@ -39,7 +39,24 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 		return employee;
 	}
 
-	
-	
-
+	@Override
+	public Employee findByName(String emp_name) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		Query query=currentSession.createQuery("from Employee e where e.emp_name = :employeeName ");
+		query.setParameter("employeeName", emp_name); 
+		List<Employee> empList=query.list();
+		int empID  = 0;
+		if(empList.size()>0)
+		{
+			for (Employee employee : empList) {
+				empID = employee.getEmp_id();
+				System.out.println("Check : "+employee.getEmp_id() + " - "+employee.getEmp_name());
+			}
+		}
+		else {
+			// Show error - create New EMp Object - Input EMP Not present 
+		}
+		Employee employee=currentSession.get(Employee.class,empID);
+		return employee;
+	}
 }

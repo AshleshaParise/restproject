@@ -38,6 +38,14 @@ public class EmployeeServiceImplementation implements EmployeeService {
 		return employeeDAO.findById(e_id);
 	}
 
+
+
+	@Override
+	@Transactional
+	public Employee findByName(String emp_name) {
+		return employeeDAO.findByName(emp_name);
+	}
+
 	
 }
 
